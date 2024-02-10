@@ -1,10 +1,12 @@
 from django.db import models
 
 # To crate a custom User model and admin panel
-
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
-
 from django.utils.translation import gettext_lazy
+
+# To automatically create OneToOne objects
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 class MyUserManager(BaseUserManager):
@@ -70,7 +72,7 @@ class Profile(models.Model):
     date_joined = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.user
+        return self.username + "s' profile"
 
     def is_fully_filled(self):
         fields_names = [f.name for f in self._meta.get_fields()]
@@ -80,3 +82,14 @@ class Profile(models.Model):
                 return False
 
         return True
+
+
+@receiver(post_save, sender=User)
+def create_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+
+@receiver(post_save, sender=User)
+def save_profile(sender, instance, **kwargs):
+    instance.profile.save()
