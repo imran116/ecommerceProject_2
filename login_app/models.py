@@ -56,3 +56,27 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_short_name(self):
         return self.email
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    username = models.CharField(max_length=200, blank=True)
+    full_name = models.CharField(max_length=200, blank=True)
+    address_1 = models.TextField(max_length=300, blank=True)
+    city = models.CharField(max_length=30, blank=True)
+    zipcode = models.CharField(max_length=10, blank=True)
+    country = models.CharField(max_length=50, blank=True)
+    phone = models.CharField(max_length=30, blank=True)
+    date_joined = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.user
+
+    def is_fully_filled(self):
+        fields_names = [f.name for f in self._meta.get_fields()]
+        for fields_name in fields_names:
+            value = getattr(self, fields_name)
+            if value is None or value == '':
+                return False
+
+        return True
