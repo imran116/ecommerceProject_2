@@ -25,7 +25,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'login_app',
     'shop_app',
+    "crispy_forms",
+    "crispy_bootstrap4",
 ]
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 # Custom User Model
 AUTH_USER_MODEL = 'login_app.User'
 MIDDLEWARE = [
@@ -117,4 +122,3 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
