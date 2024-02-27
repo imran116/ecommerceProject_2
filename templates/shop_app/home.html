@@ -6,16 +6,19 @@
         <div class="row">
             {% for object in object_list %}
                 <div class="col-md-6 col-sm-12 col-lg-3">
-                    <figure class="">
-                        <div class="">
+                    <figure class="card card-product">
+                        <div class="img-wrap">
                             <img src="{{ object.main_image.url }}" style="width: 100%;height: 300px" alt="">
                         </div>
-                        <figcaption>
-                            <h6>{{ object.name }}</h6>
-                            <div class="">
-                                <span>&#2547;{{ object.price|floatformat:2 }}</span>
-                                <span>&#2547;{{ object.old_price|floatformat:2 }}</span>
+                        <figcaption class="info-wrap">
+                            <h6 class="title"><a href="#">{{ object.name }}</a></h6>
+                            <div class="action-wrap">
+                                <div class="price-wrap h5">
+                                <span class="price-new">&#2547;{{ object.price|floatformat:2 }}</span>
+                                <span class="price-old"><del>&#2547;{{ object.old_price|floatformat:2 }}</del></span>
                             </div>
+                            </div>
+
                         </figcaption>
                     </figure>
                 </div>
