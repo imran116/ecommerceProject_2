@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block body_block %}
+
+    <div class="container my-5">
+        <h2 class="my-5">Feature Products</h2>
+        <div class="row">
+            {% for object in object_list %}
+                <div class="col-md-6 col-sm-12 col-lg-3">
+                    <figure class="">
+                        <div class="">
+                            <img src="{{ object.main_image.url }}" style="width: 100%;height: 300px" alt="">
+                        </div>
+                        <figcaption>
+                            <h6>{{ object.name }}</h6>
+                            <div class="">
+                                <span>&#2547;{{ object.price|floatformat:2 }}</span>
+                                <span>&#2547;{{ object.old_price|floatformat:2 }}</span>
+                            </div>
+                        </figcaption>
+                    </figure>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+{% endblock %}

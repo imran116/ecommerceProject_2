@@ -39,7 +39,7 @@ def login_user(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return HttpResponse('logged in')
+                return HttpResponseRedirect(reverse('shop_app:home'))
     return render(request, 'login_app/login.html', context={'form': form})
 
 
@@ -47,7 +47,7 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     messages.warning(request, "You are logged out!!")
-    return HttpResponse("logout")
+    return HttpResponseRedirect(reverse('home'))
 
 
 @login_required
