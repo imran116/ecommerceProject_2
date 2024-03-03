@@ -47,7 +47,7 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     messages.warning(request, "You are logged out!!")
-    return HttpResponseRedirect(reverse('home'))
+    return HttpResponseRedirect(reverse('login_app:login'))
 
 
 @login_required
