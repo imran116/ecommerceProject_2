@@ -29,3 +29,16 @@ def add_to_cart(request, pk):
         order.order_items.add(order_item[0])
         messages.info(request, "This item was added to your cart.")
         return redirect("shop_app:home")
+
+
+@login_required()
+def cart_view(request):
+    carts = Cart.objects.filter(user=request.user, purchased=False)
+    orders = Order.objects.filter(user=request.user, ordered=False)
+
+    if carts.exists() and orders.exists():
+        order = orders[0]
+        return render(request, 'order_app/cart.html', context={'carts': carts, 'orders': order})
+    else:
+        messages.warning(request, "You don't have any item in your cart!")
+        return redirect('shop_app:home')

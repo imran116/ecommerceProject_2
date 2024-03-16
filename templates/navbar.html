@@ -9,7 +9,7 @@
             <ul class="navbar-nav ml-auto">
                 {% if request.user.is_authenticated %}
                     <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{% url 'order_app:cart-view' %}" class="nav-link">
                         <i class="fa fa-shopping-cart">Cart</i>
                     </a>
 
