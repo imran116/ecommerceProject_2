@@ -25,13 +25,21 @@
                 <a class="mr-2" href="#"> <span class="badge badge-light"><i class="fas fa-plus"></i></span></a>
             </td>
             <td align="right">&#2547; {{ cart.get_total }}</td>
+            <td><a href="" class="btn btn-danger btn-sm">Remove</a></td>
             </tr>
         {% endfor %}
         <tr>
             <th scope="row"></th>
             <td colspan="2">Total</td>
             <td align="right">&#2547; {{ orders.get_totals }}</td>
-            <td></td>
+
+        </tr>
+        <tr>
+            <th scope="row"></th>
+            <td colspan="4" class="text-right">
+                <a href="{% url 'shop_app:home' %}" class="btn btn-warning mr-4"> Continue Shopping</a>
+                <a href="" class="btn btn-success mr-4"> Proceed To Checkout</a>
+            </td>
         </tr>
         </tbody>
 
