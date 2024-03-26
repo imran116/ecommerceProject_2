@@ -25,7 +25,7 @@
                 <a class="mr-2" href="#"> <span class="badge badge-light"><i class="fas fa-plus"></i></span></a>
             </td>
             <td align="right">&#2547; {{ cart.get_total }}</td>
-            <td><a href="" class="btn btn-danger btn-sm">Remove</a></td>
+            <td><a href="{% url 'order_app:cart-remove' cart.item.pk %}" class="btn btn-danger btn-sm">Remove</a></td>
             </tr>
         {% endfor %}
         <tr>
