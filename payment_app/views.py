@@ -22,4 +22,4 @@ def checkout(request):
     order_items = order_qs[0].order_items.all()
     order_total = order_qs[0].get_totals()
     return render(request, 'payment_app/checkout.html',
-                  context={'form': form, 'order_items': order_items, 'order_total': order_total})
+                  context={'form': form, 'order_items': order_items, 'order_total': order_total, 'saved_address':saved_address})
