@@ -102,7 +102,7 @@ def complete_url_view(request):
 
 
 @login_required
-def purchase(request,val_id, tran_id):
+def purchase(request, val_id, tran_id):
     order_qs = Order.objects.filter(user=request.user, ordered=False)
     order = order_qs[0]
     orderId = tran_id
@@ -115,3 +115,13 @@ def purchase(request,val_id, tran_id):
         item.purchased = True
         item.save()
     return HttpResponseRedirect(reverse('shop_app:home'))
+
+
+@login_required
+def orderList(request):
+    try:
+        order_list = Order.objects.filter(user=request.user, ordered=True)
+    except:
+        messages.info(request, "You do not have any order.")
+        return redirect('shop_app:home')
+    return render(request, 'payment_app/order.html', context={'order_list': order_list})

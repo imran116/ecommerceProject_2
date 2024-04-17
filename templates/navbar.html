@@ -23,7 +23,7 @@
                                 class="fas fa-user-tie"></i>{{ reuquest.user.profile.username }}</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{% url 'login_app:profile' %}">Profile</a>
-                            <a class="dropdown-item">Orders</a>
+                            <a class="dropdown-item" href="{% url 'payment_app:order-list' %}">Orders</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{% url 'login_app:logout' %}">Logout</a>
                         </div>

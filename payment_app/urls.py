@@ -8,5 +8,6 @@ urlpatterns = [
     path('payment/', views.payment, name='payment'),
     path('payment-satus/', views.complete_url_view, name='payment-status'),
     path('purchase/<val_id>/<tran_id>/', views.purchase, name='purchase'),
+    path('order-list/', views.orderList, name='order-list'),
 
 ]
